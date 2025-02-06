@@ -111,10 +111,11 @@ void displayMonsters(monsterInfo* monster, moves* move){
 void monsterFight(monsterInfo* monster, moves* move){
     monsterInfo *playerOne, *playerTwo;
     char input;
+pOnePick:
     printf("Player One, Pick a monster: (a)shrimp (b)squid (c)whale");
-    printf("Player 1>> ");
-    scanf("%c", &input);
-    
+    printf("\nPlayer 1>> ");
+    scanf(" %c", &input);
+ 
     switch(tolower(input)){
         case 'a':
             memcpy(playerOne, (monster+0), sizeof(monsterInfo));
@@ -125,6 +126,28 @@ void monsterFight(monsterInfo* monster, moves* move){
         case 'c':
             memcpy(playerOne, (monster+2), sizeof(monsterInfo));
             break;
+        default:
+            goto pOnePick;
+            break;
     }
-   
+pTwoPick:
+    printf("Player Two, Pick a monster: (a)shrimp (b)squid (c)whale");
+    printf("\nPlayer 2>> ");
+    scanf(" %c", &input);
+
+    switch(tolower(input)){
+        case 'a':
+            memcpy(playerTwo, (monster+0), sizeof(monsterInfo));
+            break;
+        case 'b':
+            memcpy(playerTwo, (monster+1), sizeof(monsterInfo));
+            break;
+        case 'c':
+            memcpy(playerTwo, (monster+2), sizeof(monsterInfo));
+            break;
+        default:
+            goto pTwoPick;
+            break;
+    }
+    printf("Lets fight");
 }
